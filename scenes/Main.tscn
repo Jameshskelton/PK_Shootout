@@ -1,0 +1,182 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5k8m0n8p2q7"]
+
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/EndScreen.gd" id="2_end"]
+[ext_resource type="Script" path="res://scripts/PowerMeter.gd" id="3_power"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ball.png" id="4_ball"]
+[ext_resource type="Texture2D" path="res://assets/sprites/goalie.png" id="5_goalie"]
+[ext_resource type="Texture2D" path="res://assets/sprites/pk_background.png" id="6_bg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_score"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_result"]
+font_size = 96
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("6_bg")
+scale = Vector2(2.666, 2.648)
+centered = false
+
+[node name="Goal" type="Node2D" parent="."]
+position = Vector2(1280, 880)
+
+[node name="Net" type="ColorRect" parent="Goal"]
+mouse_filter = 2
+offset_left = -380
+offset_top = -170
+offset_right = 380
+offset_bottom = 170
+color = Color(0, 0, 0, 0)
+
+[node name="GoalFrame" type="ColorRect" parent="Goal"]
+mouse_filter = 2
+offset_left = -400
+offset_top = -180
+offset_right = 400
+offset_bottom = 180
+color = Color(1, 1, 1, 0.15)
+
+[node name="Goalkeeper" type="Node2D" parent="Goal"]
+position = Vector2(0, 80)
+
+[node name="KeeperSprite" type="Sprite2D" parent="Goal/Goalkeeper"]
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("5_goalie")
+
+[node name="PenaltySpot" type="Marker2D" parent="."]
+position = Vector2(1280, 1160)
+
+[node name="SpotVisual" type="ColorRect" parent="PenaltySpot"]
+mouse_filter = 2
+offset_left = -10
+offset_top = -10
+offset_right = 10
+offset_bottom = 10
+color = Color(1, 1, 1, 0.8)
+
+[node name="Ball" type="Node2D" parent="."]
+position = Vector2(1280, 1160)
+
+[node name="BallSprite" type="Sprite2D" parent="Ball"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_ball")
+
+[node name="AimReticle" type="Node2D" parent="."]
+position = Vector2(1280, 880)
+visible = false
+
+[node name="ReticleShape" type="ColorRect" parent="AimReticle"]
+mouse_filter = 2
+offset_left = -40
+offset_top = -40
+offset_right = 40
+offset_bottom = 40
+color = Color(1, 0.4, 0, 0.5)
+
+[node name="PowerMeter" type="Control" parent="."]
+mouse_filter = 2
+offset_left = 1080
+offset_top = 1280
+offset_right = 1480
+offset_bottom = 1360
+script = ExtResource("3_power")
+
+[node name="Bar" type="ColorRect" parent="PowerMeter"]
+mouse_filter = 2
+offset_left = 0
+offset_top = 0
+offset_right = 400
+offset_bottom = 80
+color = Color(0.2, 0.2, 0.2, 0.8)
+
+[node name="Fill" type="ColorRect" parent="PowerMeter/Bar"]
+mouse_filter = 2
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 80
+color = Color(0.2, 0.8, 0.2, 1)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+offset_left = 1000
+offset_top = 40
+offset_right = 1560
+offset_bottom = 140
+horizontal_alignment = 1
+text = "YOU 0 - 0 OPP"
+label_settings = SubResource("LabelSettings_score")
+
+[node name="RoundIndicator" type="Label" parent="UI"]
+offset_left = 1000
+offset_top = 140
+offset_right = 1560
+offset_bottom = 200
+horizontal_alignment = 1
+text = "Kick 1 of 5"
+
+[node name="ResultLabel" type="Label" parent="UI"]
+offset_left = 800
+offset_top = 300
+offset_right = 1760
+offset_bottom = 500
+horizontal_alignment = 1
+vertical_alignment = 1
+text = ""
+label_settings = SubResource("LabelSettings_result")
+visible = false
+
+[node name="EndScreen" type="Control" parent="UI"]
+offset_right = 2560
+offset_bottom = 1440
+visible = false
+script = ExtResource("2_end")
+
+[node name="Dimmer" type="ColorRect" parent="UI/EndScreen"]
+offset_left = 0
+offset_top = 0
+offset_right = 2560
+offset_bottom = 1440
+color = Color(0, 0, 0, 0.6)
+
+[node name="Panel" type="Panel" parent="UI/EndScreen"]
+offset_left = 680
+offset_top = 480
+offset_right = 1880
+offset_bottom = 960
+
+[node name="TitleLabel" type="Label" parent="UI/EndScreen/Panel"]
+offset_left = 0
+offset_top = 60
+offset_right = 1200
+offset_bottom = 180
+horizontal_alignment = 1
+text = "YOU WIN!"
+
+[node name="ScoreLabel" type="Label" parent="UI/EndScreen/Panel"]
+offset_left = 0
+offset_top = 190
+offset_right = 1200
+offset_bottom = 270
+horizontal_alignment = 1
+text = "Final Score:  YOU 3 - 2 OPP"
+
+[node name="DetailLabel" type="Label" parent="UI/EndScreen/Panel"]
+offset_left = 0
+offset_top = 270
+offset_right = 1200
+offset_bottom = 340
+horizontal_alignment = 1
+text = "Regulation Win"
+
+[node name="RestartButton" type="Button" parent="UI/EndScreen/Panel"]
+offset_left = 400
+offset_top = 360
+offset_right = 800
+offset_bottom = 440
+text = "PLAY AGAIN"
