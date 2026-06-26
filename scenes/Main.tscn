@@ -8,10 +8,10 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/pk_background.png" id="6_bg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_score"]
-font_size = 64
+font_size = 128
 
 [sub_resource type="LabelSettings" id="LabelSettings_result"]
-font_size = 96
+font_size = 192
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_main")
@@ -104,27 +104,28 @@ color = Color(0.2, 0.8, 0.2, 1)
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="ScoreLabel" type="Label" parent="UI"]
-offset_left = 1000
+offset_left = 900
 offset_top = 40
-offset_right = 1560
-offset_bottom = 140
+offset_right = 1660
+offset_bottom = 180
 horizontal_alignment = 1
 text = "YOU 0 - 0 OPP"
 label_settings = SubResource("LabelSettings_score")
 
 [node name="RoundIndicator" type="Label" parent="UI"]
-offset_left = 1000
-offset_top = 140
-offset_right = 1560
-offset_bottom = 200
+offset_left = 900
+offset_top = 180
+offset_right = 1660
+offset_bottom = 280
 horizontal_alignment = 1
 text = "Kick 1 of 5"
+theme_override_font_sizes/font_size = 64
 
 [node name="ResultLabel" type="Label" parent="UI"]
-offset_left = 800
-offset_top = 300
-offset_right = 1760
-offset_bottom = 500
+offset_left = 680
+offset_top = 250
+offset_right = 1880
+offset_bottom = 550
 horizontal_alignment = 1
 vertical_alignment = 1
 text = ""
@@ -145,38 +146,42 @@ offset_bottom = 1440
 color = Color(0, 0, 0, 0.6)
 
 [node name="Panel" type="Panel" parent="UI/EndScreen"]
-offset_left = 680
-offset_top = 480
-offset_right = 1880
-offset_bottom = 960
+offset_left = 480
+offset_top = 300
+offset_right = 2080
+offset_bottom = 1140
 
 [node name="TitleLabel" type="Label" parent="UI/EndScreen/Panel"]
 offset_left = 0
-offset_top = 60
+offset_top = 40
 offset_right = 1200
-offset_bottom = 180
+offset_bottom = 220
 horizontal_alignment = 1
 text = "YOU WIN!"
+theme_override_font_sizes/font_size = 96
 
 [node name="ScoreLabel" type="Label" parent="UI/EndScreen/Panel"]
 offset_left = 0
-offset_top = 190
+offset_top = 230
 offset_right = 1200
-offset_bottom = 270
+offset_bottom = 350
 horizontal_alignment = 1
 text = "Final Score:  YOU 3 - 2 OPP"
+theme_override_font_sizes/font_size = 64
 
 [node name="DetailLabel" type="Label" parent="UI/EndScreen/Panel"]
 offset_left = 0
-offset_top = 270
+offset_top = 360
 offset_right = 1200
-offset_bottom = 340
+offset_bottom = 480
 horizontal_alignment = 1
 text = "Regulation Win"
+theme_override_font_sizes/font_size = 64
 
 [node name="RestartButton" type="Button" parent="UI/EndScreen/Panel"]
-offset_left = 400
-offset_top = 360
-offset_right = 800
-offset_bottom = 440
+offset_left = 300
+offset_top = 500
+offset_right = 900
+offset_bottom = 640
 text = "PLAY AGAIN"
+theme_override_font_sizes/font_size = 48
